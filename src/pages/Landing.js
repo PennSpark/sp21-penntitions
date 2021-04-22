@@ -2,9 +2,12 @@ import Login from '../components/Login';
 import Navbar from '../components/Navbar';
 import '../App.css';
 
+
+// as a group: add transition, different hover color with transition hover:bg-blue-200
+
 const Landing = (props) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-hidden">
       <Navbar className='flex' />
       <div className="w-screen flex justify-around items-center my-8">
         <div className="flex flex-col justify-center items-start w-1/3 space-y-6">
@@ -24,19 +27,19 @@ const Landing = (props) => {
         <div className="w-1/2 flex flex-col justify-center items-start space-y-0">
           <h1 className="font-bold text-7xl my-20 self-center py-5">How does it work?</h1>
           <div className="flex border-l-2 py-8">
-            <div className="-ml-10 timelineCircleOuter bg-white border-2 border-grey-200 rounded-full flex justify-center items-center">
+            <div className="-ml-8 timelineCircleOuter bg-white border-2 border-grey-200 rounded-full flex justify-center items-center">
               <span className="bg-blue-700 timelineCircleInner rounded-full hover:shadow-dot"></span>
             </div>
             <h2 className="text-4xl text-left w-11/12 pl-24">Sign up using your Penn email address</h2>          
           </div>
           <div className="flex border-l-2 py-8">
-            <div className="-ml-10 timelineCircleOuter bg-white border-2 border-grey-200 rounded-full flex justify-center items-center">
+            <div className="-ml-8 timelineCircleOuter bg-white border-2 border-grey-200 rounded-full flex justify-center items-center">
               <span className="bg-blue-700 timelineCircleInner rounded-full hover:shadow-dot"></span>
             </div>
             <h2 className="text-4xl text-left w-11/12 pl-24">Find or create a petition you care about</h2>          
           </div>
           <div className="flex border-l-2 py-8">
-            <div className="-ml-10 timelineCircleOuter bg-white border-2 border-grey-200 rounded-full flex justify-center items-center">
+            <div className="-ml-8 timelineCircleOuter bg-white border-2 border-grey-200 rounded-full flex justify-center items-center">
               <span className="bg-blue-700 timelineCircleInner rounded-full hover:shadow-dot"></span>
             </div>
             <h2 className="text-4xl text-left w-11/12 pl-24">Organize with other students to sign and share petitions!</h2>          

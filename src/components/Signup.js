@@ -9,7 +9,7 @@ const Login = (props) => {
   }
 
   return (
-    <div className='z-50 bg-white'>
+    <div className="bg-white rounded-md">
       <form>
         <label for='email'>email</label>
         <input
