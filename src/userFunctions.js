@@ -1,9 +1,20 @@
 import { useEffect } from 'react';
 import { auth, db } from './firebase';
 
-export function userFunctions() {
-  function signup(email, password) {
-    auth.createUserWithEmailAndPassword(email, password);
+export function UserFunctions() {
+  function signup(email, password, firstName, lastName, year, school, major) {
+    
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(registeredUser => {
+      return db.collection("users")
+      .doc(registeredUser.user.uid).set({
+        firstName: firstName,
+        lastName: lastName,
+        year: year,
+        school: school,
+        major: major
+      })
+    })
   }
 
   function login(email, password) {

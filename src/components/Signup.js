@@ -1,11 +1,21 @@
 import { useState } from 'react';
+import {UserFunctions} from '../userFunctions';
 
 const Login = (props) => {
   const [emailInput, setEmailInput] = useState('');
 
-  function handleEmailChange(e) {
-    setEmailInput(e.target.value);
-    console.log('this is the email input', emailInput);
+  function handleSignup(e) {
+    console.log("signing up a user! begin");
+    const email = document.getElementById("email").value;
+    // validate password
+    const password = document.getElementById("password").value;
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const year = document.getElementById("year").value;
+    const school = document.getElementById("school").value;
+    const major = document.getElementById("major").value;
+    UserFunctions.signup(email, password, firstName, lastName, year, school, major);
+    console.log("signing up a user! end");
   }
 
   function removeOverlay(){
@@ -20,39 +30,84 @@ const Login = (props) => {
         <button onClick={removeOverlay}
         className="text-3xl font-thin mb-4">x</button>
       </div>
-      <div className="flex">
-        <form className="flex flex-col flex-wrap justify-center align-center space-y-2">
+      <form className="flex justify-around max-width space-x-2">
+        <div className="flex flex-col flex-wrap justify-start items-stretch space-y-2 w-2/3">
           <div className="flex flex-col">
-            <label for='email' className="pl-4">email</label>
+            <label for='firstName' className="pl-4">first name</label>
             <input
-              id='email'
-              type='email'
-              onChange={(e) => handleEmailChange(e)}
+              id='firstName'
+              name='firstName'
+              type='text'
               className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
             ></input>
           </div>
           <div className="flex flex-col">
-            <label for='password' className="pl-4 ">password</label>
-            <input id='password' type='password' className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"></input>
+            <label for='lastName' className="pl-4">last name</label>
+            <input
+              id='lastName'
+              name='lastName'
+              type='text'
+              className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
+            ></input>
           </div>
           <div className="flex flex-col">
             <label for='email' className="pl-4">email</label>
             <input
               id='email'
+              name="email"
               type='email'
-              onChange={(e) => handleEmailChange(e)}
               className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
             ></input>
           </div>
           <div className="flex flex-col pb-4">
             <label for='password' className="pl-4 ">password</label>
-            <input id='password' type='password' className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"></input>
+            <input id='password' name="password" type='password' className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"></input>
           </div>
-          <div className="flex w-100 justify-between ">
-            <button className="bg-blue-700 text-white font-bold text-base rounded-full px-12 py-3 transition hover:bg-blue-400">login</button>
-            <button className="bg-blue-200 text-blue-700 font-bold text-base rounded-full px-12 py-3 transition hover:bg-blue-400 hover:text-white">sign up</button>
+          <div className="flex flex-col pb-4">
+            <label for='confPassword' className="pl-4 ">confirm password</label>
+            <input id='confPassword' name="confPassword" type='password' className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"></input>
           </div>
-        </form>
+          
+        </div>
+        <div className="flex flex-col flex-wrap justify-start items-stretch space-y-2 w-2/3">
+          <div className="flex flex-col">
+            <label for="classYear"  className="pl-4">class year</label>
+            <select name="classYear" id="classYear" className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input">
+              <option disabled selected value className="hidden">  </option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label for="school"  className="pl-4">school</label>
+            <select name="school" id="school" className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input">
+            <option disabled selected value className="hidden"> </option>
+              <option value="college">College</option>
+              <option value="engineering">Engineering</option>
+              <option value="nursing">Nursing</option>
+              <option value="wharton">Wharton</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label for='major' className="pl-4">major</label>
+            <input
+              id='major'
+              name='major'
+              type='text'
+              className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
+            ></input>
+          </div>
+          <div className="flex w-100 justify-items-stretch space-x-2">
+            <button onClick={handleSignup} className="bg-blue-700 text-white font-bold text-base rounded-full px-12 py-3 transition hover:bg-blue-400">sign up</button>
+          </div>
+        </div>
+      </form>
+      <div>
+
       </div>
     </div>
   );

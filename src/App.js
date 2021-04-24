@@ -8,11 +8,15 @@ import {
 import './App.css';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
+import TestPage from './pages/TestPage';
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path='/testpage'>
+          <TestPage />
+        </Route>
         <Route path='/home'>
           <Home />
         </Route>
