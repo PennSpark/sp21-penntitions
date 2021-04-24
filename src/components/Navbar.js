@@ -42,8 +42,9 @@ const Navbar = (props) => {
       <div className='flex justify-around font-semibold w-1/3 text-lg p-4'>
         <Link>About</Link>
         <Link>Contact</Link>
-        <Link onClick={addLoginOverlay}>Login</Link>
-        <Link onClick={addSignupOverlay}>Sign Up</Link>
+        <Link to='/signup'>Sign Up</Link>
+        {/* <Link onClick={addLoginOverlay}>Login</Link>
+        <Link onClick={addSignupOverlay}>Sign Up</Link> */}
       </div>
     </div>
     
