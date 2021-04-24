@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {Link} from 'react-router-dom';
 // import { UserFunctions } from '../userFunctions';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -32,11 +33,12 @@ const Signup = (props) => {
   // }
 
   return (
-    <div className='z-50 bg-white p-8 flex flex-col w-2/3 rounded-3xl h-5/6'>
+    <div className="flex items-center justify-center w-screen h-screen">
+      <div className='z-50 bg-white p-8 flex flex-col w-2/3 rounded-3xl h-5/6 border'>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-4">Sign up</h1>
-        <button 
-        className="text-3xl font-thin mb-4">x</button>
+        {/* <button 
+        className="text-3xl font-thin mb-4">x</button> */}
       </div>
       <form className="flex justify-around max-width space-x-2">
         <div className="flex flex-col flex-wrap justify-start items-stretch space-y-2 w-2/3">
@@ -109,13 +111,12 @@ const Signup = (props) => {
               className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
             ></input>
           </div>
-          <div className="flex w-100 justify-items-stretch space-x-2">
+          <div className="flex w-100 justify-items-stretch justify-between space-x-2 pt-4">
             <button onClick={handleSignup} className="bg-blue-700 text-white font-bold text-base rounded-full px-12 py-3 transition hover:bg-blue-400">sign up</button>
+            <p className='w-1/2'>Already have an account? <Link className='text-blue-700 hover:text-blue-400'to='/login'>Login in!</Link></p>
           </div>
         </div>
       </form>
-      <div>
-
       </div>
     </div>
   );

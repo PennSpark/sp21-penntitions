@@ -14,11 +14,12 @@ const Login = (props) => {
   }
 
   return (
-    <div className='z-50 bg-white p-8 flex flex-col w-1/3 rounded-3xl'>
+    <div className="flex items-center justify-center w-screen h-screen ">
+      <div className='z-50 bg-white p-8 flex flex-col w-1/3 rounded-3xl border'>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-4">Login</h1>
-        <button onClick={removeOverlay}
-        className="text-3xl font-thin mb-4">x</button>
+        {/* <button onClick={removeOverlay}
+        className="text-3xl font-thin mb-4">x</button> */}
       </div>
       <form className="flex flex-col justify-center align-center space-y-2">
         <div className="flex flex-col">
@@ -39,7 +40,9 @@ const Login = (props) => {
           <button className="bg-blue-200 text-blue-700 font-bold text-base rounded-full px-12 py-3 transition hover:bg-blue-400 hover:text-white">sign up</button>
         </div>
       </form>
+      </div>
     </div>
+    
   );
 };
 export default Login;

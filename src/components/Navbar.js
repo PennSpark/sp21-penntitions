@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import '../index.css';
 import '../App.css';
-import Login from './Login'
+import Login from '../pages/Login'
 import SignUp from './Signup'
 import ReactDOM from 'react-dom'
 
@@ -43,8 +43,7 @@ const Navbar = (props) => {
         <Link>About</Link>
         <Link>Contact</Link>
         <Link to='/signup'>Sign Up</Link>
-        {/* <Link onClick={addLoginOverlay}>Login</Link>
-        <Link onClick={addSignupOverlay}>Sign Up</Link> */}
+        <Link to='/login'>Login</Link>
       </div>
     </div>
     

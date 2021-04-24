@@ -10,6 +10,7 @@ import Landing from './pages/Landing';
 import Home from './pages/Home';
 import TestPage from './pages/TestPage';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
 import AuthProvider from './contexts/AuthContext';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path='/home'>
             <Home />
+          </Route>
+          <Route path='/login'>
+            <Login />
           </Route>
           <Route path='/signup'>
             <Signup />
