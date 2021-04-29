@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../App.css';
 
@@ -6,6 +6,8 @@ import '../App.css';
 // as a group: add transition, different hover color with transition hover:bg-blue-200
 
 const Landing = (props) => {
+  
+
   return (
     <div className="flex flex-col overflow-x-hidden">
       <Navbar className='flex' />
