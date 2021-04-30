@@ -19,15 +19,15 @@ const Signup = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [sentLink, setSentLink] = useState(false);
   const { signup, sendEmailVerification } = useAuth();
-  const { checkLoginWithEmail } = useAuth();
+  // const { checkLoginWithEmail } = useAuth();
   let history = useHistory();
   
   async function handleSignup(e) {
     e.preventDefault();
     console.log("signing up a user! begin");
-    const email = document.getElementById("email").value;
-    
+
     // retrieve information from input fields
+    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confPassword = document.getElementById("confPassword").value;
     const firstName = document.getElementById("firstName").value;
@@ -49,7 +49,8 @@ const Signup = (props) => {
 
     try {
       await signup(email, password, firstName, lastName, year, school, major);
-      await sendEmailVerification(window.location.protocol + window.location.hostname + window.location.port);
+      const root = window.location.href.replace("signup", "login")
+      await sendEmailVerification(root);
       setSentLink(true);
     } catch(error) {
       console.log('error', error)
@@ -68,6 +69,7 @@ const Signup = (props) => {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen">
+      {console.log("LOCATION: ", window.location.href)}
       <div className='z-50 bg-white p-8 flex flex-col w-2/3 rounded-3xl h-5/6 border'>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-4">Sign up</h1>
