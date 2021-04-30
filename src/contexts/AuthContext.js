@@ -9,6 +9,7 @@ export function useAuth(){
 
 export default function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState();
+    const [userData, setUserData] = useState();
     const [loading, setLoading] = useState(true)
 
     function signup(email, password, firstName, lastName, year, school, major) {
@@ -115,6 +116,19 @@ export default function AuthProvider({children}) {
           // User is signed in.
           setCurrentUser(user);
           
+          // gets user data
+          db.collection('users').doc(user.uid).get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                setUserData(doc.data())
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        })
+
           console.log('successfully signed in user', user.uid);
         }
         else {
@@ -127,11 +141,13 @@ export default function AuthProvider({children}) {
 
     const value = {
         currentUser,
+        userData,
         signup,
         sendEmailVerification,
         emailVerification,
         // checkLoginWithEmail,
-        login
+        login,
+        logout
     }
 
     return (<AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>)
