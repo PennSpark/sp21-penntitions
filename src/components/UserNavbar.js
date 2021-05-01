@@ -4,7 +4,7 @@ import '../App.css';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-const Navbar = (props) => {
+const UserNavbar = (props) => {
     const { logout } = useAuth();
     let history = useHistory();
 
@@ -27,10 +27,10 @@ const Navbar = (props) => {
       </div>
       <div className='flex justify-end font-semibold w-1/4 text-lg'>
         <Link className='transition p-4 pb-2 px-6 border-b-6 border-blue-900 hover:border-blue-100'>Account</Link>
-        <div onClick={handleLogout}className='transition p-4 pb-2 px-6 border-b-6 border-blue-900 hover:border-blue-100 cursor-pointer'>Log out</div>
+        <div onClick={handleLogout} className='transition p-4 pb-2 px-6 border-b-6 border-blue-900 hover:border-blue-100 cursor-pointer'>Log out</div>
       </div>
     </div>
     
   );
 };
-export default Navbar;
+export default UserNavbar;
