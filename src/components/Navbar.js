@@ -40,8 +40,8 @@ const Navbar = (props) => {
   return (
     <div className='w-screen flex justify-end'>
       <div className='flex justify-around font-semibold w-1/3 text-lg p-4'>
-        <Link className='transition hover:text-blue-700'>About</Link>
-        <Link className='transition hover:text-blue-700'>Contact</Link>
+        <Link className='transition hover:text-blue-700' to='/about'>About</Link>
+        <Link className='transition hover:text-blue-700' to='/contact'>Contact</Link>
         <Link className='transition hover:text-blue-700' to='/signup'>Sign Up</Link>
         <Link className='transition hover:text-blue-700' to='/login'>Login</Link>
       </div>

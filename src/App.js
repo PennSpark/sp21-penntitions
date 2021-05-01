@@ -10,6 +10,8 @@ import Landing from './pages/Landing';
 import Home from './pages/Home';
 import TestPage from './pages/TestPage';
 import Signup from './pages/Signup';
+import About from './pages/About';
+import Contact from './pages/Contact';
 import Login from './pages/Login';
 import CreatePetition from './pages/CreatePetition';
 import AuthProvider from './contexts/AuthContext';
@@ -23,6 +25,12 @@ function App() {
           </Route>
           <Route path='/home'>
             <Home />
+          </Route>
+          <Route path='/about'>
+            <About />
+          </Route>
+          <Route path='/contact'>
+            <Contact />
           </Route>
           <Route path='/login'>
             <Login />
