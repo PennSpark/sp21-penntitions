@@ -20,6 +20,9 @@ function App() {
   return (
     <Router>
         <Switch>
+          <Route path='/createpetition'>
+            <CreatePetition />
+          </Route>
           <Route path='/testpage'>
             <TestPage />
           </Route>
