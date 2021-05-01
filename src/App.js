@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import TestPage from './pages/TestPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import CreatePetition from './pages/CreatePetition';
 import AuthProvider from './contexts/AuthContext';
 
 function App() {
