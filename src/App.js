@@ -12,6 +12,7 @@ import TestPage from './pages/TestPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import AuthProvider from './contexts/AuthContext';
+import Accounts from './pages/Accounts';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path='/signup'>
             <Signup />
+          </Route>
+          <Route path='/account'>
+            <Accounts />
           </Route>
           <Route exact path='/'>
             <Landing />
