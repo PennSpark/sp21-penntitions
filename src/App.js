@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import CreatePetition from './pages/CreatePetition';
 import AuthProvider from './contexts/AuthContext';
 
 function App() {
