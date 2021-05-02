@@ -2,29 +2,14 @@ import { useState } from 'react';
 import {Link} from 'react-router-dom';
 // import { UserFunctions } from '../userFunctions';
 import { useAuth } from '../contexts/AuthContext';
-import pennimage from '../Assests/upennImage.jpeg';
+import pennimage from '../Assets/upennImage.jpeg';
 
 const Account = (props) => {
   const [emailInput, setEmailInput] = useState('');
   const { signup } = useAuth();
 
-  async function handleAccount(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log("signing up a user! begin");
-    const email = document.getElementById("email").value;
-    // validate password
-    const password = document.getElementById("password").value;
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const display = document.getElementById("classYear").value;
-    const major = document.getElementById("major").value;
-    try {
-      await signup(email, password, firstName, lastName,display, major);
-    } catch(error) {
-      console.log('error', error)
-    }
-    
-    console.log("signing up a user! end");
   }
 
 
@@ -66,29 +51,67 @@ const Account = (props) => {
             ></input>
           </div>
           <div className="flex flex-col">
-            <label for='username' className="pl-4">username</label>
+            <label for='year' className="pl-4">year</label>
             <input
-              id='username'
-              name="username"
-              type='username'
+              id='year'
+              name="year"
+              type='number'
               className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
             ></input>
           </div>
-          <div className="flex flex-col pb-4">
-            <label for='password' className="pl-4 ">password</label>
-            <input id='password' name="password" type='password' className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"></input>
+          <div className="flex flex-col">
+            <label for='major' className="pl-4">major</label>
+            <input
+              id='major'
+              name="major"
+              type='text'
+              className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
+            ></input>
           </div>
-          <div className="flex flex-col pb-4">
-            <label for='confPassword' className="pl-4 ">confirm password</label>
-            <input id='confPassword' name="confPassword" type='password' className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"></input>
-          </div>
-          <div className="flex w-100 justify-items-stretch justify-between space-x-2 pt-4">
-            <button onClick={handleAccount} className="bg-blue-700 text-white font-bold text-base rounded-full px-12 py-3 transition hover:bg-blue-400">Save</button>
-          </div>
+          
           
         </div>
         <div className="flex flex-col flex-wrap justify-start items-stretch space-y-2 w-2/3">
-        <div className="flex flex-col">
+          <div className="flex flex-col">
+          <p className="pl-4">Anonymous?</p>
+          <div className="flex">
+            <div className="w-1/2 float-left pl-4">
+                <input
+                  id="yesAnon"
+                  name="yesAnon"
+                  type="radio"
+                  value="yes"
+                  className="rounded-full border border-grey-400">
+                </input>
+                <label for="yesAnon" className="pl-4">Yes</label>
+                <p className="text-gray-400 text-sm">I want to remain anonymous</p>
+            </div>
+            <div className="w-1/2 float-left pl-4">
+                <input
+                  id="noAnon"
+                  name="noAnon"
+                  type="radio"
+                  value="no"
+                  className="rounded-full border border-grey-400">
+                </input>
+                <label for="noAnon" className="pl-4">No</label>
+                <p className="text-gray-400 text-sm">I do not want to remain anonymous</p>
+            </div>
+          </div>
+          </div>
+          <div className="flex flex-col">
+            <label for='description' className="pl-4">description</label>
+            <textarea
+              id='description'
+              name="description"
+              type='text'
+              className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
+            ></textarea>
+          </div>
+          <div className="flex flex-col py-3">
+                <button onClick={handleSubmit} className="bg-blue-700 text-white font-bold text-base rounded-full px-12 py-3 pb-2 transition hover:bg-blue-400">edit info</button>
+          </div>
+        {/* <div className="flex flex-col">
             <label for='profile' className="pl-4">my profile picture</label>
             <img 
                 src = {pennimage} 
@@ -115,7 +138,7 @@ const Account = (props) => {
               type='text'
               className="rounded-full border border-grey-400 outline-none px-4 py-10 focus:border-blue-400 focus:shadow-input"
             ></input>
-          </div>
+          </div> */}
         </div>
       </form>
       </div>

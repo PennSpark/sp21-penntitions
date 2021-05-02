@@ -12,7 +12,8 @@ import TestPage from './pages/TestPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import AuthProvider from './contexts/AuthContext';
-import Accounts from './pages/Accounts';
+import EditAccount from './pages/EditAccount';
+import MyAccount from './pages/MyAccount';
 
 function App() {
   return (
@@ -30,8 +31,11 @@ function App() {
           <Route path='/signup'>
             <Signup />
           </Route>
-          <Route path='/account'>
-            <Accounts />
+          <Route path='/editaccount'>
+            <EditAccount />
+          </Route>
+          <Route path='/myaccount'>
+            <MyAccount />
           </Route>
           <Route exact path='/'>
             <Landing />
