@@ -15,6 +15,8 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import CreatePetition from './pages/CreatePetition';
 import AuthProvider from './contexts/AuthContext';
+import EditAccount from './pages/EditAccount';
+import MyAccount from './pages/MyAccount';
 
 function App() {
   return (
@@ -40,6 +42,12 @@ function App() {
           </Route>
           <Route path='/signup'>
             <Signup />
+          </Route>
+          <Route path='/editaccount'>
+            <EditAccount />
+          </Route>
+          <Route path='/myaccount'>
+            <MyAccount />
           </Route>
           <Route exact path='/'>
             <Landing />
