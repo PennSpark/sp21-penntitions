@@ -1,9 +1,55 @@
 import { useState } from 'react';
 import UserNavbar from '../components/UserNavbar';
+import { useHistory } from 'react-router-dom';
+import { auth, db } from '../firebase';
+import firebase from 'firebase';
+import { useAuth } from '../contexts/AuthContext';
 
 const CreatePetition = (props) => {
+  const { userId, userData } = useAuth();
+  let history = useHistory();
+  console.log(userId)
+
   function handleSubmit(e) {
     e.preventDefault();
+    // Add a new document for the petition under petitions collection
+    let appearingName;
+    if (userData.isAnonymous) {
+      appearingName = "Anonymous"
+    } else {
+      appearingName = userData.firstName + " " + userData.lastName
+    }
+    db.collection("petitions").add({
+      author: appearingName,
+      authorId: userId,
+      title: document.getElementById("title").value,
+      description: document.getElementById("description").value,
+      signGoal: parseInt(document.getElementById("goal").value),
+      currentSign: 0,
+      signers: [],
+      link: document.getElementById("url").value,
+      dateCreated: firebase.firestore.Timestamp.now()
+    })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+      // adds the id of the document to a petitions collection for the current user
+      let userRef = db.collection("users").doc(userId);
+      userRef.collection("createdPetitions").doc(docRef.id).set({
+        title: document.getElementById("title").value,
+      })
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+          console.error("Error writing document: ", error);
+      });
+      history.push('petition/' + docRef.id);
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+
+    
   }
     return (
     <div>
@@ -70,7 +116,7 @@ const CreatePetition = (props) => {
                   <input
                     id='goal'
                     name="goal"
-                    type='number'
+                    type='text'
                     className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
                   ></input>
                 </div>
@@ -79,7 +125,7 @@ const CreatePetition = (props) => {
                   <input
                     id='url'
                     name="url"
-                    type='url' //maybe change type to some kind of tagging??
+                    type='text' //maybe change type to some kind of tagging??
                     className="rounded-full border border-grey-400 outline-none px-4 py-2 focus:border-blue-400 focus:shadow-input"
                   ></input>
                 </div>

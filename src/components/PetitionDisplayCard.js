@@ -1,5 +1,5 @@
 const PetitionDisplayCard = (props) => {
-    return <div className='w-full flex justify-between px-4'>
+    return <div className='w-full flex justify-between px-4 transition hover:bg-gray-100 py-2'>
         
         <div className="flex flex-col">
             <p className="font-bold ">Petition title</p>

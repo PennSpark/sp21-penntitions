@@ -17,6 +17,7 @@ import CreatePetition from './pages/CreatePetition';
 import AuthProvider from './contexts/AuthContext';
 import EditAccount from './pages/EditAccount';
 import MyAccount from './pages/MyAccount';
+import PetitionPage from './pages/PetitonPage';
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path='/myaccount'>
             <MyAccount />
+          </Route>
+          <Route path='/petition/:petitionId'>
+            <PetitionPage />
           </Route>
           <Route exact path='/'>
             <Landing />

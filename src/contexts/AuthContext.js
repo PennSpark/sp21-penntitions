@@ -10,6 +10,7 @@ export function useAuth(){
 export default function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState();
     const [userData, setUserData] = useState();
+    const [userId, setUserId] = useState("");
     const [loading, setLoading] = useState(true)
 
     function signup(email, password, firstName, lastName, year, school, major) {
@@ -25,6 +26,7 @@ export default function AuthProvider({children}) {
             school: school,
             major: major,
             emailVerified: false,
+            isAnonymous: false,
           })
           .then(() => {
             console.log("Document successfully written!");
@@ -121,6 +123,7 @@ export default function AuthProvider({children}) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
                 setUserData(doc.data())
+                setUserId(user.uid)
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -142,6 +145,7 @@ export default function AuthProvider({children}) {
     const value = {
         currentUser,
         userData,
+        userId,
         signup,
         sendEmailVerification,
         emailVerification,
@@ -152,4 +156,3 @@ export default function AuthProvider({children}) {
 
     return (<AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>)
 }
-
