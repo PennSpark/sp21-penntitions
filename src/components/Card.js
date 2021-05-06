@@ -6,7 +6,7 @@ const Card = (props) => {
                 <h1 className='bg-blue-700 text-white text-base px-3 py-1 rounded-full md:rounded-md sm:rounded-sm'>{props.isActive ? "Active" : "Inactive"}</h1>
             </div>
             <div className='flex justify-between'>
-                <h2>By {props.author ? props.author : "Loading Author"}, {props.dateCreated ? props.dateCreated : "Loading Date"}</h2>
+                <h2>by {props.author ? props.author : "Loading Author"}, {props.dateCreated ? props.dateCreated : "Loading Date"}</h2>
                 <h2>{props.supporters ? props.supporters : "0"} Supporters</h2>
             </div>
         </div>
