@@ -9,6 +9,8 @@ import UserNavbar from '../components/UserNavbar';
 const PetitionPage = ({ match, history }) => {
   const { userId } = useAuth();
   const [petition, setPetition] = useState();
+  const [loading, setLoading] = useState(true);
+  
   let { petitionId } = useParams();
 
   function renderSignButton() {
@@ -39,9 +41,16 @@ const PetitionPage = ({ match, history }) => {
         })
         
       // adds petition to user's signedPetitions collection
-      userRef.collection("signedPetitions").doc(petitionId).set({
-        title: "filler",
-      })
+      let petitionData = {};
+      if (!loading) {
+          petitionData = {
+              title: petition.title,
+            //   id: petition.id,
+            //   supporters: petition.currentSign,
+            //   author: petition.author
+          }
+      }
+      userRef.collection("signedPetitions").doc(petitionId).set(petitionData)
       .then(() => {
         console.log("Document successfully written!");
       })
@@ -60,6 +69,8 @@ const PetitionPage = ({ match, history }) => {
           // doc.data() will be undefined in this case
           console.log("No such document!");
       }
+
+      setLoading(false)
   }, [])
   .catch((error) => {
     console.log("Error getting document:", error);
@@ -72,10 +83,14 @@ const PetitionPage = ({ match, history }) => {
         <PetitionStatusBar />
         <div className='w-screen px-8 pt-4 '>
             <div className='flex justify-between'>
-                <div className='flex flex-col'>
+                <div className='flex flex-col items-start'>
                     <h1 className="text-3xl font-bold mb-4">{petition ? petition.title : "Title"}</h1>
                     <h2 className=''>{petition ? "created by " + petition.author : "unknown"}</h2>
-                    <a href={petition ? petition.link : ""}>Linked page</a>
+                    {petition ? (
+                        petition.link ? <a className='text-blue-700 'href={petition.link}>See more here</a> :
+                        ""
+                    ) : (<div></div>)}
+                    
                 </div>
                 <div className='flex flex-col items-end'>
                     <div className={(petition ? (
@@ -83,7 +98,7 @@ const PetitionPage = ({ match, history }) => {
                         "bg-green-700 text-white " :
                         "bg-gray-200 "
                     ) : ("bg-gray-200 "))
-                        + 'px-4 py-2 mr-4 rounded-md'}>
+                        + 'px-4 py-2 mr-4 rounded-md font-bold'}>
                          Goal: {petition ? petition.currentSign : "0"}/{petition ? petition.signGoal : "0"}
                     </div>
                     { petition ? (
