@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 // import { UserFunctions } from '../userFunctions';
 import { useAuth } from '../contexts/AuthContext';
 import pennimage from '../Assets/upennImage.jpeg';
+import UserNavbar from '../components/UserNavbar';
 
 const Account = (props) => {
   const [emailInput, setEmailInput] = useState('');
@@ -14,7 +15,9 @@ const Account = (props) => {
 
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
+    <div className="w-screen h-screen flex flex-col items-center space-y-4">
+        <UserNavbar />
+        
       <div className='z-50 bg-white p-8 flex flex-col w-2/3 rounded-3xl h-5/6 border'>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-4">Account</h1>

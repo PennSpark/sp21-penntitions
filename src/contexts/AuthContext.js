@@ -27,6 +27,7 @@ export default function AuthProvider({children}) {
             major: major,
             emailVerified: false,
             isAnonymous: false,
+            email: email,
           })
           .then(() => {
             console.log("Document successfully written!");
@@ -105,6 +106,7 @@ export default function AuthProvider({children}) {
     }
   
     function logout() {
+      window.localStorage.removeItem('uid');
       return auth.signOut();
     }
   
@@ -122,7 +124,11 @@ export default function AuthProvider({children}) {
           db.collection('users').doc(user.uid).get().then((doc) => {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
-                setUserData(doc.data())
+                window.localStorage.setItem('uid', user.uid)
+                setUserData({
+                  ...doc.data(),
+                  userId: user.uid
+                })
                 setUserId(user.uid)
             } else {
                 // doc.data() will be undefined in this case

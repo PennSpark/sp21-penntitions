@@ -22,17 +22,19 @@ const CreatePetition = (props) => {
     db.collection("petitions").add({
       author: appearingName,
       authorId: userId,
+      isActive: true,
       title: document.getElementById("title").value,
       description: document.getElementById("description").value,
       signGoal: parseInt(document.getElementById("goal").value),
       currentSign: 0,
       signers: [],
       link: document.getElementById("url").value,
-      dateCreated: firebase.firestore.Timestamp.now()
+      dateCreated: firebase.firestore.Timestamp.now().toDate().toString(),
     })
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
       // adds the id of the document to a petitions collection for the current user
+      docRef.set({petitionId: docRef.id}, {merge: true})
       let userRef = db.collection("users").doc(userId);
       userRef.collection("createdPetitions").doc(docRef.id).set({
         title: document.getElementById("title").value,
@@ -54,7 +56,7 @@ const CreatePetition = (props) => {
     return (
     <div>
       <UserNavbar />
-        <div className="flex justify-center w-screen h-screen p-8">
+        <div className="flex justify-center w-screen h-screen p-8 overflow-x-hidden">
         
           <form className="flex justify-around w-full space-x-4">
             <div className="flex flex-col flex-wrap justify-start items-stretch space-y-2 w-3/5">

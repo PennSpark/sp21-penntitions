@@ -10,14 +10,10 @@ const PetitionPage = ({ match, history }) => {
   const { userId } = useAuth();
   const [petition, setPetition] = useState();
   const [loading, setLoading] = useState(true);
+  const [userSigned, setUserSigned] = useState(false);
   
   let { petitionId } = useParams();
 
-  function renderSignButton() {
-      if (petition !== undefined) {
-
-      }
-  }
   function handleSign(e) {
       e.preventDefault();
       const petitionRef = db.collection("petitions").doc(petitionId);
@@ -45,9 +41,6 @@ const PetitionPage = ({ match, history }) => {
       if (!loading) {
           petitionData = {
               title: petition.title,
-            //   id: petition.id,
-            //   supporters: petition.currentSign,
-            //   author: petition.author
           }
       }
       userRef.collection("signedPetitions").doc(petitionId).set(petitionData)
@@ -57,9 +50,10 @@ const PetitionPage = ({ match, history }) => {
       .catch((error) => {
           console.error("Error writing document: ", error);
       });
+      setUserSigned(true);
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     db.collection("petitions").doc(petitionId).get()
     .then((doc) => {
       if (doc.exists) {
